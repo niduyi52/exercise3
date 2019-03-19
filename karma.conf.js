@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Tue Mar 19 2019 10:19:02 GMT+0800 (GMT+08:00)
+// Generated on Thu Mar 14 2019 10:30:19 GMT+0800 (CST)
 
 module.exports = function(config) {
   config.set({
@@ -16,8 +16,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'https://cdn.bootcss.com/jquery/2.2.4/jquery.js',
-	    'node_modules/should/should.js',
-	    'test/**.js'
+      'node_modules/should/should.js', 
+      'test/**.js'
     ],
 
 
@@ -57,15 +57,24 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
 
+    browsers: ['Chrome', 'Chrome_without_security'], // You may use 'ChromeCanary', 'Chromium' or any other supported browser
+
+    // you can define custom flags
+    customLaunchers: {
+      Chrome_without_security: {
+        base: 'Chrome',
+        flags: ['--disable-web-security']
+      }
+    },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+    
   })
 }
